@@ -27,6 +27,7 @@ $(document).ready(function () {
         $('#btn-predict').show();
         $('#result').text('');
         $('#result').hide();
+        // audio.show()
         readURL(this);
     });
 
@@ -65,11 +66,24 @@ $(document).ready(function () {
               processData: false,
               async: true,
               success: function (data) {
+                  sourceUrl = data['audio_id']
+                  play_audio_file(audio=$("#audio_player"), wav_url=sourceUrl)
                   console.log('Success!');
               },
           });
 
     }
+
+    function play_audio_file(audio, sourceUrl){
+      	// Display audio player
+      	audio.show()
+      	// // Set source wav URL
+      	audio.attr("src", sourceUrl);
+      	// Play wav URL
+          audio[0].pause();
+          audio[0].load(); //suspends and restores all audio element
+        //   audio[0].oncanplaythrough = audio[0].play();
+      }
 
 
     // Predict

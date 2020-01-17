@@ -1,8 +1,8 @@
 import sys
 import os
-import glob
-import re
-import numpy as np
+# import glob
+# import re
+# import numpy as np
 
 # Keras
 # from keras.applications.imagenet_utils import preprocess_input, decode_predictions
@@ -10,7 +10,7 @@ import numpy as np
 # from keras.preprocessing import image
 
 # Flask utils
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, jsonify
 from werkzeug.utils import secure_filename
 from gevent.pywsgi import WSGIServer
 
@@ -53,9 +53,10 @@ def get_script():
         print(script)
         print(file_path)
 
-        Voice_Cloner.sythesize_voice(file_path, script)
+        output_path = Voice_Cloner.sythesize_voice(file_path, script)
+        response = jsonify({'audio_id': output_path})
 
-    return script
+    return response
 
 if __name__ == '__main__':
     app.run(debug=True)

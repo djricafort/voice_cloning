@@ -179,7 +179,7 @@ class Voice_Cloner():
 				sd.play(generated_wav, synthesizer.sample_rate)
 
 			# Save it on the disk
-			fpath = "demo_output_%02d.wav" % num_generated
+			fpath = "static/cloned/demo_output_%02d.wav" % num_generated
 			print(generated_wav.dtype)
 			librosa.output.write_wav(fpath, generated_wav.astype(np.float32),
 									 synthesizer.sample_rate)
@@ -191,7 +191,7 @@ class Voice_Cloner():
 			print("Caught exception: %s" % repr(e))
 			print("Restarting\n")
 
-		# return 1 #synthesized_voice_output
+		return fpath #synthesized_voice_output
 
 
 if __name__ == '__main__':
