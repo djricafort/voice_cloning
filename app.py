@@ -31,6 +31,7 @@ def index():
 @app.route('/clone', methods=['GET', 'POST'])
 def upload():
     global file_path
+    print("in upload()")
     if request.method == 'POST':
         # Get the file from post request
         f = request.files['file']
@@ -47,16 +48,36 @@ def upload():
 
 @app.route('/script', methods=['GET', 'POST'])
 def get_script():
+    global file_path
     if request.method == 'POST':
         # Get the transcript from post request
         script = request.get_json()
-        print(script)
+        print("FILE PATH")
         print(file_path)
 
         output_path = Voice_Cloner.sythesize_voice(file_path, script)
         response = jsonify({'audio_id': output_path})
 
     return response
+
+@app.route('/record', methods=['POST'])
+def save_audio():
+    # f = open('./file.wav', 'wb')
+    # f.write(request.files['file'])
+    # f.close()
+    global file_path
+    print("in save_audio()")
+    f = request.files['file']
+
+
+    # Save the file to ./uploads
+    basepath = os.path.dirname(__file__)
+    file_path = os.path.join(
+        basepath, 'uploads', secure_filename(f.filename))
+    print(file_path)
+    f.save(file_path)
+
+    return 'Audio saved'
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -7,17 +7,50 @@
         <label for="audioUpload" class="upload-label">
             Upload Voice
         </label>
-        <input type="file" name="file" id="audioUpload" accept=".mp3, .wav, .m4a, .flac">
+        <input type="file" name="file" id="audioUpload" accept=".mp3, .wav, .m4a, .flac, .ogg">
     </form>
 
-    <div class="image-section" style="display:none;">
-        <div class="img-preview">
-            <div id="imagePreview">
+    <div id='gUMArea'>
+    <button class="btn btn-primary btn-lg"  id='gUMbtn'>Record Voice</button>
+    </div>
+
+    <div id='btns'>
+
+        <button  class="btn btn-primary btn-lg" id='start'>Start</button>
+        <button  class="btn btn-primary btn-lg" id='stop'>Stop</button>
+    </div>
+    <div>
+        <ul  class="list-unstyled" id='ul'></ul>
+    </div>
+
+    <div style="margin-bottom: 5px; width: 50%" class="input-group">
+        <audio controls id="recorded_audio_player" style="width: 100%; display: none">
+          <source id="recorded_src" type="audio/wav">
+        </audio>
+    </div>
+
+
+    <!-- <form id="upload-file" method="post" enctype="multipart/form-data">
+        <label for="audioRecorder" class="upload-label">
+            Record Voice
+        </label>
+        <input type="file" id="audioRecorder"accept="audio/*" capture=microphone>
+        <audio id="player" controls></audio>
+
+    </form> -->
+
+    <div class="filename-section" style="display:none;">
+        <div class="filename-preview">
+            <div id="filenamePreview">
             </div>
         </div>
-        <div>
-            <button type="button" class="btn btn-primary btn-lg " id="btn-clone">Clone!</button>
-        </div>
+        <!-- <div>
+            <button type="button" class="btn btn-primary btn-lg" id="btn-clone">Clone!</button>
+        </div> -->
+    </div>
+
+    <div class="clone">
+        <button type="button" class="btn btn-primary btn-lg" id="btn-clone">Clone!</button>
     </div>
 
     <div class="loader" style="display:none;"></div>
