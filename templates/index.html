@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<h2>Reference voice: enter an audio filepath of a voice to be cloned (mp3,wav, m4a, or flac)</h2>
+<h2>Reference voice: enter an audio filepath of a voice to be cloned (mp3,wav, m4a, or flac) OR record your voice</h2>
 
 <div>
     <form id="upload-file" method="post" enctype="multipart/form-data">
@@ -10,8 +10,8 @@
         <input type="file" name="file" id="audioUpload" accept=".mp3, .wav, .m4a, .flac, .ogg">
     </form>
 
-    <div id='gUMArea'>
-    <button class="btn btn-primary btn-lg"  id='gUMbtn'>Record Voice</button>
+    <div id='recordArea'>
+    <button class="btn btn-primary btn-lg"  id='recordVoice'>Record Voice</button>
     </div>
 
     <div id='btns'>
@@ -30,23 +30,12 @@
     </div>
 
 
-    <!-- <form id="upload-file" method="post" enctype="multipart/form-data">
-        <label for="audioRecorder" class="upload-label">
-            Record Voice
-        </label>
-        <input type="file" id="audioRecorder"accept="audio/*" capture=microphone>
-        <audio id="player" controls></audio>
-
-    </form> -->
 
     <div class="filename-section" style="display:none;">
         <div class="filename-preview">
             <div id="filenamePreview">
             </div>
         </div>
-        <!-- <div>
-            <button type="button" class="btn btn-primary btn-lg" id="btn-clone">Clone!</button>
-        </div> -->
     </div>
 
     <div class="clone">
@@ -55,9 +44,9 @@
 
     <div class="loader" style="display:none;"></div>
 
-    <h3 id="result">
+    <!-- <h3 id="result">
         <span> </span>
-    </h3>
+    </h3> -->
 
     <div class="input-form">
       <form id="script">
