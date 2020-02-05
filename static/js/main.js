@@ -132,7 +132,7 @@ $(document).ready(function () {
 
 
     function get_script(){
-      var form_script_data = document.getElementById('input-text').value;
+      var form_script_data = document.getElementById('textarea-field').value; //input-text textarea-field
       console.log(form_script_data);
 
         $.ajax({
@@ -146,9 +146,12 @@ $(document).ready(function () {
               async: true,
               success: function (data) {
                   $('.loader').hide();
+                  console.log('TEST!');
                   sourceUrl = data['audio_id']
                   play_audio_file(audio=$("#audio_player"), wav_url=sourceUrl)
                   console.log('Success!');
+                  console.log('TEST!');
+                  console.log(sourceUrl);
               },
           });
 
@@ -156,12 +159,16 @@ $(document).ready(function () {
 
     function play_audio_file(audio, sourceUrl){
       	// Display audio player
-      	audio.show()
+      	// audio.show();
       	// // Set source wav URL
+        console.log("play audio");
       	audio.attr("src", sourceUrl);
+        audio.show();
       	// Play wav URL
-          audio[0].pause();
-          audio[0].load(); //suspends and restores all audio element
+        console.log(sourceUrl);
+        // audio[0].play();
+        // audio[0].pause();
+        audio[0].load(); //suspends and restores all audio element
       }
 
 

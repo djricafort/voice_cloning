@@ -149,15 +149,25 @@ class Voice_Cloner():
 			## Generating the spectrogram
 			# hard coding text to be synthesized for now
 			# text = input("Write a sentence (+-20 words) to be synthesized:\n")
-			text = script
+			
+			# text = script
+			texts = script.split(".")
 
 			# The synthesizer works in batch, so you need to put your data in a list or numpy array
-			texts = [text]
-			embeds = [embed]
+			
+			# texts = [text]
+			# embeds = [embed]
+
+			embeds = np.stack([embed] * len(texts))
+
+
 			# If you know what the attention layer alignments are, you can retrieve them here by
 			# passing return_alignments=True
 			specs = synthesizer.synthesize_spectrograms(texts, embeds)
-			spec = specs[0]
+			# spec = specs[0]
+
+			spec = np.concatenate(specs, axis=1)
+			
 			print("Created the mel spectrogram")
 
 
