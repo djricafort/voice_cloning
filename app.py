@@ -72,4 +72,5 @@ def save_audio():
     return 'Audio saved'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0',ssl_context='adhoc')
