@@ -11,6 +11,7 @@ import torch
 import sys
 import os
 import time
+import re
 
 # import sounddevice as sd
 
@@ -152,7 +153,8 @@ class Voice_Cloner():
 			# text = input("Write a sentence (+-20 words) to be synthesized:\n")
 			
 			# text = script
-			texts = script.split(".")
+			# texts = script.split(".")
+			texts = re.split('[,.:;?!]', script)
 
 			# The synthesizer works in batch, so you need to put your data in a list or numpy array
 			
