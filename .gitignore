@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+voice_cloning/encoder/saved_models
+voice_cloning/vocoder/saved_models
+voice_cloning/synthesizer/saved_models
+uploads/
+static/cloned
+file.wav
+demo_output_00.wav

@@ -193,7 +193,7 @@ class Voice_Cloner():
 			print(generated_wav.dtype)
 			librosa.output.write_wav(fpath, generated_wav.astype(np.float32),
 									 synthesizer.sample_rate)
-			num_generated += 1
+			# num_generated += 1
 			print("\nSaved output as %s\n\n" % fpath)
 
 
