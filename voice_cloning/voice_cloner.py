@@ -154,7 +154,12 @@ class Voice_Cloner():
 			
 			# text = script
 			# texts = script.split(".")
-			texts = re.split('[,.:;?!]', script)
+			texts = re.split('[.:;?!]', script)
+			# print(texts)
+			while("" in texts):
+				texts.remove("")
+			# print(texts)
+
 
 			# The synthesizer works in batch, so you need to put your data in a list or numpy array
 			
