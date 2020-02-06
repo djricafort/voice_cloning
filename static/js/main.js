@@ -159,16 +159,18 @@ $(document).ready(function () {
 
     function play_audio_file(audio, sourceUrl){
       	// Display audio player
-      	// audio.show();
+      	audio.show();
+        var audio2 = document.getElementById('audio_player');
       	// // Set source wav URL
         console.log("play audio");
-      	audio.attr("src", sourceUrl);
-        audio.show();
+      	// audio.attr("src", sourceUrl);
+        audio2.src = sourceUrl
+        // audio2.show();
       	// Play wav URL
         console.log(sourceUrl);
         // audio[0].play();
-        // audio[0].pause();
-        audio[0].load(); //suspends and restores all audio element
+        audio2.pause();
+        audio2.load(); //suspends and restores all audio element
       }
 
 

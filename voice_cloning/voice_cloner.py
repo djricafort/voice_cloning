@@ -10,6 +10,7 @@ import argparse
 import torch
 import sys
 import os
+import time
 
 # import sounddevice as sd
 
@@ -184,17 +185,19 @@ class Voice_Cloner():
 			generated_wav = np.pad(generated_wav, (0, synthesizer.sample_rate), mode="constant")
 
 			# Play the audio (non-blocking)
-			if not args.no_sound:
-				sd.stop()
-				sd.play(generated_wav, synthesizer.sample_rate)
+			# if not args.no_sound:
+			# 	sd.stop()
+			# 	sd.play(generated_wav, synthesizer.sample_rate)
 
 			# Save it on the disk
-			fpath = "static/cloned/demo_output_%02d.wav" % num_generated
+			# fpath = "static/cloned/demo_output_%02d.wav" % num_generated
+			fpath = "static/cloned/" + time.strftime("%Y%m%d-%H%M%S") + ".wav"
 			print(generated_wav.dtype)
 			librosa.output.write_wav(fpath, generated_wav.astype(np.float32),
 									 synthesizer.sample_rate)
-			# num_generated += 1
+			num_generated += 1
 			print("\nSaved output as %s\n\n" % fpath)
+			print(time.strftime("%Y%m%d-%H%M%S"))
 
 
 		except Exception as e:
