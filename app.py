@@ -9,6 +9,10 @@ from gevent.pywsgi import WSGIServer
 from voice_cloning.voice_cloner import Voice_Cloner
 from voice_cloning.voice_cloner2 import Voice_Cloner2
 
+import subprocess
+import shlex
+import time
+
 app = Flask(__name__)
 file_path = ""
 
@@ -49,12 +53,21 @@ def get_script():
         # Start the cloning process then synthesize speech using the script provided
         # sample_script = script.replace(".", ".\n")
         # sample_script = sample_script.replace(".", ".\n")
-        print("TEST123")
-        print(script)
-        print(sample_script)
+        # print("TEST123")
+        # print(script)
+        # print(sample_script)
         output_path = Voice_Cloner.sythesize_voice(file_path, script)
         response = jsonify({'audio_id': output_path})
-        print(output_path)
+        # print(output_path)
+        basepath = os.path.dirname(__file__)
+        script_path = os.path.join(basepath,'silence_remover.sh')
+
+        trimmed_output_path = os.path.join(
+            basepath, 'static/cloned', secure_filename(time.strftime("%Y%m%d-%H%M%S") + "t.wav"))
+        # subprocess.call(shlex.split('%s %s %s' % (script_path, str(output_path), str(trimmed_output_path))))
+        # time.sleep(10)
+        # print(trimmed_output_path)
+        # response = jsonify({'audio_id': trimmed_output_path})
 
     return response
 
@@ -72,5 +85,5 @@ def save_audio():
     return 'Audio saved'
 
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run(debug=True,host='0.0.0.0',ssl_context='adhoc')
+    app.run(debug=True)
+    # app.run(debug=True,host='0.0.0.0',ssl_context='adhoc')
