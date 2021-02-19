@@ -37,9 +37,6 @@ class Voice_Cloner():
 
         ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
         encoder_model_path = os.path.relpath("encoder/saved_models/pretrained.pt")
-        # print("TEST5!!!")
-        # print(ROOT_DIR)
-        # print(ROOT_DIR + "/" + encoder_model_path)
         ## Info & args
         parser = argparse.ArgumentParser(
             formatter_class=argparse.ArgumentDefaultsHelpFormatter
@@ -64,9 +61,6 @@ class Voice_Cloner():
             import sounddevice as sd
 
         ## Load the models one by one.
-        # encoder_model_path = "encoder/saved_models/pretrained.pt"
-        # synthesizer_model_path = "synthesizer/saved_models/logs-pretrained/"
-        # vocoder_model_path = "vocoder/saved_models/pretrained/pretrained.pt"
 
         print("Preparing the encoder, the synthesizer and the vocoder...")
         encoder.load_model(args.enc_model_fpath)
@@ -209,12 +203,10 @@ class Voice_Cloner():
             temp_output = Audio_Cleaner.reduce_noise_centroid_mb(generated_wav, synthesizer.sample_rate)
             cleaned_wav, cleaned_wav_sr = Audio_Cleaner.trim_silence(temp_output)
 
-            print("here")
             print(cleaned_wav_sr)
             print(synthesizer.sample_rate)
             librosa.output.write_wav(fpath, generated_wav.astype(np.float32),
                                      synthesizer.sample_rate)
-            print("here2")
             num_generated += 1
             print("\nSaved output as %s\n\n" % fpath)
             print(time.strftime("%Y%m%d-%H%M%S"))
